@@ -2,63 +2,35 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AOT;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SwiftUiBridge : MonoBehaviour
 {
     private delegate void CallbackDelegate(string command);
 
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private Button _buttoon;
-    [SerializeField] private Button _scoreButtoon;
-
-    private int _score = 0;
-    private bool _swiftUIWindowOpen = false;
-
     private void OnEnable()
     {
-        SetNativeCallback(CallbackFromNative);
-        
-        _buttoon.onClick.AddListener(WasPressed);
-        _scoreButtoon.onClick.AddListener(() =>
-        {
-            _score++;
-            UpdateScore(_score);
-        });
+        SetSampleNativeCallback(CallbackFromNative);
     }
 
     private void OnDisable()
     {
-        SetNativeCallback(null);
-        CloseSwiftUiSampleWindow("HelloWorld");
+        SetSampleNativeCallback(null);
     }
 
-    private void Start()
+    public void ShowScore(int score)
     {
-        Toggle();
+        SwiftUiBridge.UpdateScore(score);
     }
 
-    private void WasPressed()
+    public void OpenWindow()
     {
-        Debug.Log("----------> Button was pressed");
-
-        Toggle();
+        OpenSwiftUiSampleWindow("SampleScene");
     }
 
-    private void Toggle()
+    public void CloseWindow()
     {
-        if (_swiftUIWindowOpen)
-        {
-            CloseSwiftUiSampleWindow("SampleScene");
-            _swiftUIWindowOpen = false;
-        }
-        else
-        {
-            OpenSwiftUiSampleWindow("SampleScene");
-            _swiftUIWindowOpen = true;
-        }
+        CloseSwiftUiSampleWindow("SampleScene");
     }
 
     [MonoPInvokeCallback(typeof(CallbackDelegate))]
@@ -67,20 +39,11 @@ public class SwiftUiBridge : MonoBehaviour
         Debug.Log("Callback from native: " + message);
 
         SwiftUiBridge self = FindFirstObjectByType<SwiftUiBridge>();
-
-        if (message == "closed")
-        {
-            self._swiftUIWindowOpen = false;
-        }
-        else
-        {
-            self._text.text = message;
-        }
     }
 
 #if UNITY_VISIONOS && !UNITY_EDITOR
         [DllImport("__Internal")]
-        private static extern void SetNativeCallback(CallbackDelegate callback);
+        private static extern void SetSampleNativeCallback(CallbackDelegate callback);
 
         [DllImport("__Internal")]
         private static extern void OpenSwiftUiSampleWindow(string name);
@@ -91,7 +54,7 @@ public class SwiftUiBridge : MonoBehaviour
         [DllImport("__Internal")]
         private static extern void UpdateScore(int score);
 #else
-    static void SetNativeCallback(CallbackDelegate callback)
+    static void SetSampleNativeCallback(CallbackDelegate callback)
     {
     }
 

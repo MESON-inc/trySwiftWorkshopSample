@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PolySpatial.Samples
 {
@@ -7,6 +8,7 @@ namespace PolySpatial.Samples
     {
         [SerializeField] TMP_Text m_ScoreText;
         [SerializeField] GameObject m_WinConfetti;
+        [SerializeField] private SwiftUiBridge _bridge;
 
         private BalloonBehavior[] m_Balloons;
 
@@ -59,11 +61,15 @@ namespace PolySpatial.Samples
             {
                 balloon.Initialize();
             }
+            
+            _bridge.CloseWindow();
         }
 
         private void FinishGame()
         {
             _poppedWinConfetti = Instantiate(m_WinConfetti);
+            
+            _bridge.OpenWindow();
         }
 
         private void ResetGame()
