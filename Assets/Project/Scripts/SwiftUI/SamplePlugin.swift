@@ -52,8 +52,8 @@ func updateScore(_ score: Int32) {
     scoreData.score = score
 }
 
-@_cdecl("SetNativeCallback")
-func setNativeInputCallback(_ delegate: SampleCallbackDelegateType)
+@_cdecl("SetSampleNativeCallback")
+func setSampleNativeInputCallback(_ delegate: SampleCallbackDelegateType)
 {
     print("############ SET NATIVE CALLBACK")
     sSampleCallbackDelegate = delegate
