@@ -8,23 +8,15 @@ public class ScoreData: ObservableObject {
     }
 }
 
-var scoreData: ScoreData?
+public class ScoreDataProvider {
+    private let _scoreData: ScoreData = ScoreData()
 
-func tryCreateScoreData() {
-    if scoreData == nil {
-        scoreData = ScoreData()
+    public var scoreData: ScoreData {
+        _scoreData
     }
 }
 
-public func getScoreData() -> ScoreData? {
-    tryCreateScoreData()
-    
-    guard let data = scoreData else {
-        return nil
-    }
-        
-    return data
-}
+public let scoreDataProvider: ScoreDataProvider = ScoreDataProvider()
 
 // ---------------------------------------------------
 
@@ -45,11 +37,7 @@ public func callCSharpSampleCallback(_ str: String)
 
 @_cdecl("UpdateScore")
 func updateScore(_ score: Int32) {
-    guard let scoreData = getScoreData() else {
-        return
-    }
-    
-    scoreData.score = score
+    scoreDataProvider.scoreData.score = score
 }
 
 @_cdecl("SetSampleNativeCallback")
