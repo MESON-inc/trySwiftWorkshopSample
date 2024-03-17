@@ -67,8 +67,6 @@ namespace PolySpatial.Samples
                 SetBalloonValues(m_GoldMaterial, k_GoldScore, m_GoldParticlePrefab);
                 m_Manager.GoodBalloonAdded();
             }
-
-            m_Animator.SetTrigger(k_GrowAnimTrigger);
         }
 
         private void SetBalloonValues(Material mat, int score, GameObject particlePrefab)

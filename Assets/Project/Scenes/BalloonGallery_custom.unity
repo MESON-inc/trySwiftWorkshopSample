@@ -5667,7 +5667,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674107914}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -5860,9 +5860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87888903fc9824e54b167b73d19f99d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 0}
-  _buttoon: {fileID: 0}
-  _scoreButtoon: {fileID: 0}
 --- !u!1 &1775990088
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,7 +5872,7 @@ GameObject:
   - component: {fileID: 1775990089}
   - component: {fileID: 1775990092}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: BalloonGalleryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5896,6 +5893,7 @@ MonoBehaviour:
   m_ScoreText: {fileID: 216553191}
   m_WinConfetti: {fileID: 4489260424600887801, guid: 91dbd5724e538498ba7df0bc249f760b,
     type: 3}
+  _bridge: {fileID: 1770450687}
 --- !u!4 &1775990090
 Transform:
   m_ObjectHideFlags: 0
