@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class SwiftUiBridge : MonoBehaviour
 {
+    public event System.Action<string> OnReceivedMessage; 
+
     private delegate void CallbackDelegate(string command);
 
     private void OnEnable()
@@ -39,6 +41,8 @@ public class SwiftUiBridge : MonoBehaviour
         Debug.Log("Callback from native: " + message);
 
         SwiftUiBridge self = FindFirstObjectByType<SwiftUiBridge>();
+
+        self.OnReceivedMessage?.Invoke(message);
     }
 
 #if UNITY_VISIONOS && !UNITY_EDITOR

@@ -11,7 +11,8 @@
         "Unity.XR.Hands",
         "Unity.XR.Interaction.Toolkit",
         "Unity.XR.Management",
-        "Unity.XR.VisionOS"
+        "Unity.XR.VisionOS",
+        "WorkshopProject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

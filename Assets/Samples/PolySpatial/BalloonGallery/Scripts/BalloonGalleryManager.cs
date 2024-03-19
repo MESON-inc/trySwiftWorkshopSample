@@ -28,6 +28,8 @@ namespace PolySpatial.Samples
             {
                 balloon.m_Manager = this;
             }
+            
+            _bridge.OnReceivedMessage += HandleReceivedMessage;
 
             StartGame();
         }
@@ -84,6 +86,16 @@ namespace PolySpatial.Samples
             }
             
             StartGame();
+        }
+        
+        private void HandleReceivedMessage(string message)
+        {
+            switch (message)
+            {
+                case "Restart":
+                    ResetGame();
+                    break;
+            }
         }
 
 #if UNITY_EDITOR
