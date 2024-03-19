@@ -71,6 +71,7 @@ namespace PolySpatial.Samples
         {
             _poppedWinConfetti = Instantiate(m_WinConfetti);
             
+            _bridge.ShowScore(m_CurrentScore);
             _bridge.OpenWindow();
         }
 
