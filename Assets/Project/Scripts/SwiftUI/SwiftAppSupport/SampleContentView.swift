@@ -10,7 +10,11 @@ struct SampleContentView: View {
     
     var body: some View {
         VStack {
-            Text("Hello, SwiftUI!")
+            Text("Your score is \(scoreData.score)")
+            
+            Button("Restart") {
+                callCSharpSampleCallback("Restart")
+            }
         }
     }
 }
